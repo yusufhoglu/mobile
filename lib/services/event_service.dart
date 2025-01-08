@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class EventService {
-  static const String baseUrl = 'http://10.0.2.2:3000/api/events'; // Use 10.0.2.2 for Android emulator
+  static const String baseUrl = 'http://192.168.114.39:3000/api/events'; // Use 10.0.2.2 for Android emulator
 
   Future<List<dynamic>> fetchEvents() async {
     final response = await http.get(Uri.parse(baseUrl));
