@@ -35,6 +35,7 @@ class _AddEventPageState extends State<AddEventPage> {
       "location": _locationController.text,
       "date": _dateController.text,
       "photoUrl": _photoUrlController.text,
+      "eventType": eventType!,
     };
 
     widget.onEventAdded(newEvent);

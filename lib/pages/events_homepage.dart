@@ -37,7 +37,7 @@ class EventsHomePageState extends State<EventsHomePage> {
   List<Map<String, String>> getFilteredEvents() {
     if (selectedEventType == null) return widget.events;
     return widget.events
-        .where((event) => event['eventType'] == selectedEventType)
+        .where((event) => event['event_type'] == selectedEventType)
         .toList();
   }
 
@@ -113,12 +113,12 @@ class EventsHomePageState extends State<EventsHomePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          event['name'] ?? '',
+          event['title'] ?? '',
           style: Theme.of(context).textTheme.titleLarge,
         ),
         SizedBox(height: 4),
         Text(
-          "Type: ${event['eventType'] ?? 'Not specified'}",
+          "Type: ${event['event_type'] ?? 'Not specified'}",
           style: TextStyle(
             fontStyle: FontStyle.italic,
             color: Colors.grey[700],

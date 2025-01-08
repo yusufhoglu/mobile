@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'services/event_service.dart';
 import 'pages/admin.dart';
 import 'pages/profile.dart'; // Add this line to import ProfilePage
-// import 'widgets/password_dialog.dart'; // Add this line to import PasswordDialog
+import 'pages/events_homepage.dart'; // Yeni import
 
 void main() {
   runApp(MyApp());
@@ -170,27 +170,9 @@ class _HomePageState extends State<HomePage> {
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Center(child: Text('No events found.'));
           } else {
-            final eventList = snapshot.data!;
-            return ListView.builder(
-              itemCount: eventList.length,
-              itemBuilder: (context, index) {
-                final eventData = eventList[index];
-                return Card(
-                  elevation: 3,
-                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  child: ListTile(
-                    title: Text(eventData["title"] ?? "No Title"),
-                    subtitle: Text(eventData["description"] ?? "No Description"),
-                    trailing: IconButton(
-                      icon: Icon(Icons.delete, color: Colors.red),
-                      onPressed: () => _handleEventDeleted(int.parse(eventData['id']!)),
-                    ),
-                    onTap: () {
-                      // İsteğe göre düzenleyip event detayı veya düzenleme sayfasına yönlendirebilirsiniz
-                    },
-                  ),
-                );
-              },
+            return EventsHomePage(
+              events: snapshot.data!,
+              onEventDeleted: (id) => _handleEventDeleted(id),
             );
           }
         },
